@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: 816f3a8dbd559f74dae4d6ea7297286c
+guid: e1a0678b1b3f42940b5f448099f7de6f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3212801859442847008
-    second: Pacman_0
+      213: -1434801676565703740
+    second: Power Pellet_0
   - first:
-      213: -6543664708499819273
-    second: Pacman_1
+      213: -5713707397234246068
+    second: Power Pellet_1
   - first:
-      213: -5117255910089929328
-    second: Pacman_2
+      213: 8138051047494447433
+    second: Power Pellet_2
   - first:
-      213: 2740536928371084324
-    second: Pacman_3
+      213: 6888094723885455183
+    second: Power Pellet_3
   - first:
-      213: 6980233407664102775
-    second: Pacman_4
+      213: 1114843059166764715
+    second: Power Pellet_4
   - first:
-      213: -8013500012710627186
-    second: Pacman_5
-  - first:
-      213: 6556962587452152743
-    second: Pacman_0
-  - first:
-      213: -2465655486423219481
-    second: Pacman_1
+      213: 2731894617683579287
+    second: Power Pellet_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -55,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -69,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 1000
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,10 +78,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -96,10 +90,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pacman_0
+      name: Power Pellet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,20 +112,20 @@ TextureImporter:
         width: 720
         height: 720
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ab9c96abb20ffa50800000000000000
-      internalID: 6556962587452152743
+      spriteID: 4c39a212a7f861ce0800000000000000
+      internalID: -1434801676565703740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_1
+      name: Power Pellet_1
       rect:
         serializedVersion: 2
         x: 720
@@ -139,20 +133,20 @@ TextureImporter:
         width: 720
         height: 720
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e24041166b38cdd0800000000000000
-      internalID: -2465655486423219481
+      spriteID: c4eb45d0565d4b0b0800000000000000
+      internalID: -5713707397234246068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_2
+      name: Power Pellet_2
       rect:
         serializedVersion: 2
         x: 1440
@@ -160,20 +154,20 @@ TextureImporter:
         width: 720
         height: 720
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09d4256bcdadbf8b0800000000000000
-      internalID: -5117255910089929328
+      spriteID: 941f6e97f4a20f070800000000000000
+      internalID: 8138051047494447433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_3
+      name: Power Pellet_3
       rect:
         serializedVersion: 2
         x: 0
@@ -181,20 +175,20 @@ TextureImporter:
         width: 720
         height: 720
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42c066df0d7580620800000000000000
-      internalID: 2740536928371084324
+      spriteID: f475f6c18ad679f50800000000000000
+      internalID: 6888094723885455183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_4
+      name: Power Pellet_4
       rect:
         serializedVersion: 2
         x: 720
@@ -202,14 +196,14 @@ TextureImporter:
         width: 720
         height: 720
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77d12292d45ced060800000000000000
-      internalID: 6980233407664102775
+      spriteID: baed1f90bd7b87f00800000000000000
+      internalID: 1114843059166764715
       vertices: []
       indices: 
       edges: []

@@ -1,31 +1,43 @@
 fileFormatVersion: 2
-guid: 816f3a8dbd559f74dae4d6ea7297286c
+guid: a6089a58ed71c2843b58d48da11a9dca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3212801859442847008
-    second: Pacman_0
+      213: -6961788235535088765
+    second: Blue Ghost Down_0
   - first:
-      213: -6543664708499819273
-    second: Pacman_1
+      213: -6957098897409058589
+    second: Blue Ghost Down_1
   - first:
-      213: -5117255910089929328
-    second: Pacman_2
+      213: 7962463162267946567
+    second: Blue Ghost Down_2
   - first:
-      213: 2740536928371084324
-    second: Pacman_3
+      213: -8064051465401761921
+    second: Blue Ghost Down_3
   - first:
-      213: 6980233407664102775
-    second: Pacman_4
+      213: 3757801190087640366
+    second: Blue Ghost Down_4
   - first:
-      213: -8013500012710627186
-    second: Pacman_5
+      213: -7149796184051529133
+    second: Blue Ghost Down_5
   - first:
-      213: 6556962587452152743
-    second: Pacman_0
+      213: 3608063666719800600
+    second: Blue Ghost Down_0
   - first:
-      213: -2465655486423219481
-    second: Pacman_1
+      213: 7003408747405565380
+    second: Blue Ghost Down_1
+  - first:
+      213: -144914395422894061
+    second: Blue Ghost Down_2
+  - first:
+      213: 523719106154659360
+    second: Blue Ghost Down_3
+  - first:
+      213: 3012284460329699633
+    second: Blue Ghost Down_4
+  - first:
+      213: -3515000443553728824
+    second: Blue Ghost Down_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -55,7 +67,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -84,10 +96,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -96,10 +108,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pacman_0
+      name: Blue Ghost Down_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ab9c96abb20ffa50800000000000000
-      internalID: 6556962587452152743
+      spriteID: 81db3ddd9ca621230800000000000000
+      internalID: 3608063666719800600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_1
+      name: Blue Ghost Down_1
       rect:
         serializedVersion: 2
         x: 720
@@ -145,14 +157,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e24041166b38cdd0800000000000000
-      internalID: -2465655486423219481
+      spriteID: 4cdd8fd662b113160800000000000000
+      internalID: 7003408747405565380
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_2
+      name: Blue Ghost Down_2
       rect:
         serializedVersion: 2
         x: 1440
@@ -166,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09d4256bcdadbf8b0800000000000000
-      internalID: -5117255910089929328
+      spriteID: 3185af900292dfdf0800000000000000
+      internalID: -144914395422894061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_3
+      name: Blue Ghost Down_3
       rect:
         serializedVersion: 2
         x: 0
@@ -187,14 +199,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42c066df0d7580620800000000000000
-      internalID: 2740536928371084324
+      spriteID: 02efe6490cf944700800000000000000
+      internalID: 523719106154659360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_4
+      name: Blue Ghost Down_4
       rect:
         serializedVersion: 2
         x: 720
@@ -208,8 +220,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77d12292d45ced060800000000000000
-      internalID: 6980233407664102775
+      spriteID: 1398164c1c8cdc920800000000000000
+      internalID: 3012284460329699633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blue Ghost Down_5
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c6b3a848b5383fc0800000000000000
+      internalID: -3515000443553728824
       vertices: []
       indices: 
       edges: []

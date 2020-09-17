@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: 816f3a8dbd559f74dae4d6ea7297286c
+guid: f9c5734b38b691f4b92ff3658eba5ace
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3212801859442847008
-    second: Pacman_0
+      213: -4672859215708102109
+    second: Orange Ghost Down_0
   - first:
-      213: -6543664708499819273
-    second: Pacman_1
+      213: -784599034887405507
+    second: Orange Ghost Down_1
   - first:
-      213: -5117255910089929328
-    second: Pacman_2
+      213: -40589099609746415
+    second: Orange Ghost Down_2
   - first:
-      213: 2740536928371084324
-    second: Pacman_3
+      213: -7791183600956355824
+    second: Orange Ghost Down_3
   - first:
-      213: 6980233407664102775
-    second: Pacman_4
+      213: 3569637846368628626
+    second: Orange Ghost Down_4
   - first:
-      213: -8013500012710627186
-    second: Pacman_5
-  - first:
-      213: 6556962587452152743
-    second: Pacman_0
-  - first:
-      213: -2465655486423219481
-    second: Pacman_1
+      213: -1079578489929513445
+    second: Orange Ghost Down_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -55,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -84,10 +78,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -96,10 +90,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pacman_0
+      name: Orange Ghost Down_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ab9c96abb20ffa50800000000000000
-      internalID: 6556962587452152743
+      spriteID: 322ee4a1d4ba62fb0800000000000000
+      internalID: -4672859215708102109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_1
+      name: Orange Ghost Down_1
       rect:
         serializedVersion: 2
         x: 720
@@ -145,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e24041166b38cdd0800000000000000
-      internalID: -2465655486423219481
+      spriteID: d300c62b55b8c15f0800000000000000
+      internalID: -784599034887405507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_2
+      name: Orange Ghost Down_2
       rect:
         serializedVersion: 2
         x: 1440
@@ -166,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09d4256bcdadbf8b0800000000000000
-      internalID: -5117255910089929328
+      spriteID: 1141200dd6ccf6ff0800000000000000
+      internalID: -40589099609746415
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_3
+      name: Orange Ghost Down_3
       rect:
         serializedVersion: 2
         x: 0
@@ -187,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42c066df0d7580620800000000000000
-      internalID: 2740536928371084324
+      spriteID: 01bc52d5bc720e390800000000000000
+      internalID: -7791183600956355824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pacman_4
+      name: Orange Ghost Down_4
       rect:
         serializedVersion: 2
         x: 720
@@ -208,8 +202,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77d12292d45ced060800000000000000
-      internalID: 6980233407664102775
+      spriteID: 29fa79165b6e98130800000000000000
+      internalID: 3569637846368628626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orange Ghost Down_5
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b16499055119401f0800000000000000
+      internalID: -1079578489929513445
       vertices: []
       indices: 
       edges: []
