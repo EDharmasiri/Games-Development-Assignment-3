@@ -55,25 +55,25 @@ public class LevelGenerator : MonoBehaviour
                     case 0:
                         break;
                     case 1:
-                        Instantiate(outsideCorner, new Vector3(j * 4, -i * 4), checkAngle(i, j, 1));
+                        Instantiate(outsideCorner, new Vector3(j * 4, -i * 4), checkAngle(i, j, 1), gameObject.transform);
                         break;
                     case 2:
-                        Instantiate(outsideWall, new Vector3(j * 4, -i * 4), checkAngle(i, j, 2));
+                        Instantiate(outsideWall, new Vector3(j * 4, -i * 4), checkAngle(i, j, 2), gameObject.transform);
                         break;
                     case 3:
-                        Instantiate(insideCorner, new Vector3(j * 4, -i * 4), checkAngle(i, j, 3));
+                        Instantiate(insideCorner, new Vector3(j * 4, -i * 4), checkAngle(i, j, 3), gameObject.transform);
                         break;
                     case 4:
-                        Instantiate(insideWall, new Vector3(j * 4, -i * 4), checkAngle(i, j, 4));
+                        Instantiate(insideWall, new Vector3(j * 4, -i * 4), checkAngle(i, j, 4), gameObject.transform);
                         break;
                     case 5:
-                        Instantiate(standardPellet, new Vector3(j * 4, -i * 4), Quaternion.identity);
+                        Instantiate(standardPellet, new Vector3(j * 4, -i * 4), Quaternion.identity, gameObject.transform);
                         break;
                     case 6:
-                        Instantiate(powerPellet, new Vector3(j * 4, -i * 4), Quaternion.identity);
+                        Instantiate(powerPellet, new Vector3(j * 4, -i * 4), Quaternion.identity, gameObject.transform);
                         break;
                     case 7:
-                        Instantiate(tJunction, new Vector3(j * 4, -i * 4), checkAngle(i, j, 7));
+                        Instantiate(tJunction, new Vector3(j * 4, -i * 4), checkAngle(i, j, 7), gameObject.transform);
                         break;
                 }
             }
