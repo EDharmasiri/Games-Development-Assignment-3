@@ -22,7 +22,7 @@ public class AudioSourceSwitcher : MonoBehaviour
         yield return new WaitForSeconds(audioManager.clip.length);
         //Switch to background normal music
         audioManager.clip = backgroundNormal;
-        audioManager.spatialBlend = 0.44f;
+        audioManager.spatialBlend = 0.2f;
         audioManager.loop = true;
         audioManager.Play();
     }

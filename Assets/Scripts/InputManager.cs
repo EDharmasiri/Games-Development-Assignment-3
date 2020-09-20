@@ -43,14 +43,14 @@ public class InputManager : MonoBehaviour
         {
             tweener.AddTween(pacman.transform, pacman.transform.position, bottomLeft, 1.0f);
             pacman.transform.rotation = Quaternion.identity;
-            pacman.transform.localScale = new Vector3(-1.0f, -1.0f, 0.0f);
+            pacman.transform.localScale = new Vector3(-1.0f, 1.0f, 0.0f);
         }
             
         else if (Vector3.Distance(pacman.transform.position, bottomLeft) <= 0.1f)
         {
             tweener.AddTween(pacman.transform, pacman.transform.position, topLeft, 1.0f);
             pacman.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
-            pacman.transform.localScale = new Vector3(1.0f, 1.0f, 0.0f);
+            pacman.transform.localScale = new Vector3(1.0f, -1.0f, 0.0f);
         }
             
     }
