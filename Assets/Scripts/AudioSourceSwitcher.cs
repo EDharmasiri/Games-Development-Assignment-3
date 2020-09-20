@@ -22,7 +22,7 @@ public class AudioSourceSwitcher : MonoBehaviour
         yield return new WaitForSeconds(audioManager.clip.length);
         //Switch to background normal music
         audioManager.clip = backgroundNormal;
-        audioManager.spatialBlend = 0.44f;
+        audioManager.spatialBlend = 0.2f;
         audioManager.loop = true;
         audioManager.Play();
     }
@@ -30,7 +30,7 @@ public class AudioSourceSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timeCounter >= 1)
+        if(timeCounter >= 0.5)
         {
             timeCounter = 0;
             audioManager.PlayOneShot(walking);
