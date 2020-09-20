@@ -30,7 +30,7 @@ public class AudioSourceSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timeCounter >= 1)
+        if(timeCounter >= 0.5)
         {
             timeCounter = 0;
             audioManager.PlayOneShot(walking);
