@@ -35,4 +35,19 @@ public class Tweener : MonoBehaviour
         if(activeTween == null)
             activeTween = new Tween(targetObject, startPos, endPos, Time.time, duration);
     }
+
+    public bool tweenInProgress()
+    {
+        return activeTween != null;
+    }
+
+    public void RemoveTween()
+    {
+        activeTween = null;
+    }
+
+    public bool compareEndPos(Vector3 wantedEndPos)
+    {
+        return activeTween.EndPos == wantedEndPos;
+    }
 }
