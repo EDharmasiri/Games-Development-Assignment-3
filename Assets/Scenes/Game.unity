@@ -860,95 +860,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1001 &505652296
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2968038994032288467, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2968038994032288467, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2968038994032288467, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2968038994032288467, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2968038994032288467, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2968038994032288467, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2968038994032288467, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2968038994032288467, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2968038994032288467, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2968038994032288467, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2968038994032288467, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4190579771507704778, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: m_Name
-      value: Pacman Death Particles
-      objectReference: {fileID: 0}
-    - target: {fileID: 6565993400273824079, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.91372555
-      objectReference: {fileID: 0}
-    - target: {fileID: 6565993400273824079, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.87843144
-      objectReference: {fileID: 0}
-    - target: {fileID: 6565993400273824079, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.25882354
-      objectReference: {fileID: 0}
-    - target: {fileID: 6565993400273824079, guid: 4941b8365bc73bb4dabc3debfd9cb404,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 1000
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4941b8365bc73bb4dabc3debfd9cb404, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,6 +1217,10 @@ MonoBehaviour:
   scoreKeeper: {fileID: 33445333}
   gameTimer: {fileID: 351258526}
   ghostScaredTimer: {fileID: 1149347552}
+  startCountdown: {fileID: 1173454080458389668, guid: f4cd0e066bc3cf34ca2434a5c1744eaf,
+    type: 3}
+  gameOverScreen: {fileID: 6806655983689884173, guid: d09f746bcf91e1b4c9ee0e34fc48af21,
+    type: 3}
 --- !u!1 &763976106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,6 +1554,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pacman: {fileID: 13354897}
+  ghosts:
+  - {fileID: 763976106}
+  - {fileID: 1150942468}
+  - {fileID: 385559888}
+  - {fileID: 770327782}
   intro: {fileID: 8300000, guid: b54f94fd9f3ccd54eb03abe9415354fa, type: 3}
   backgroundNormal: {fileID: 8300000, guid: 0b6be686f799fc548925355946c5f757, type: 3}
   walking: {fileID: 8300000, guid: fb2b0aae3a759ac41901c1740735ed54, type: 3}
@@ -7282,6 +7202,8 @@ MonoBehaviour:
   - {fileID: 385559888}
   - {fileID: 770327782}
   wallParticle: {fileID: 4190579771507704778, guid: 4941b8365bc73bb4dabc3debfd9cb404,
+    type: 3}
+  pacDeathParticles: {fileID: 7010326747179229297, guid: abc8fdf1a981122499f7ab30b644bbb3,
     type: 3}
 --- !u!4 &1573098001
 Transform:

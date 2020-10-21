@@ -5,11 +5,14 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UISceneManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
+        if (FindObjectsOfType<UISceneManager>().Length < 2)
+            DontDestroyOnLoad(this);
+            
     }
 
     // Update is called once per frame
@@ -18,18 +21,17 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void loadLevel(int index) {
-        DontDestroyOnLoad(this);
+    public static void loadLevel(int index) {        
         SceneManager.LoadScene(index, LoadSceneMode.Single);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public void ExitGame()
+    public static void ExitGame()
     {
         loadLevel(0);
     }
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //If the scene is level 1
         if (scene.buildIndex == 1)

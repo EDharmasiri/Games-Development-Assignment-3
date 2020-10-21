@@ -29,6 +29,9 @@ public class PacStudentController : MonoBehaviour
     //Keep track of pacman's state
     public enum PacState { Normal, Powered, Dead }
 
+    //Keep track of ghost death timer
+    private float[] ghostDeathTimer;
+
     //Dictionaries
     private Dictionary<KeyCode, Vector2> keyToDirection = new Dictionary<KeyCode, Vector2>();
     private Dictionary<KeyCode, Vector3> keyToEndPosition = new Dictionary<KeyCode, Vector3>();
@@ -41,8 +44,10 @@ public class PacStudentController : MonoBehaviour
     public static PacState CurrentState { get; private set; }
     public static float PowerTime { get; private set; }
 
-
     public static bool PacmanIsMoving { get; private set; }
+
+    public static bool GhostIsDead { get; set; }
+    public static bool PlayDeathSound { get; set; }
 
     private void Start()
     {
@@ -64,6 +69,11 @@ public class PacStudentController : MonoBehaviour
         //Pacman state
         CurrentState = PacState.Normal;
         PowerTime = 10.0f;
+
+        //Ghost Trackers
+        GhostIsDead = false;
+        ghostDeathTimer = new float[] { 5.0f, 5.0f, 5.0f, 5.0f };
+        PlayDeathSound = false;
 
         //Keycode to Direction Dictionary
         keyToDirection.Add(KeyCode.W, Vector2.up);
@@ -92,113 +102,152 @@ public class PacStudentController : MonoBehaviour
 
     private void Update()
     {
-        //Lerp to move pacman from one position to the next if there isn't a wall
-        if (Input.GetKey(KeyCode.W) && !nextToWall(keyToDirection[KeyCode.W]))
-            movePacman(KeyCode.W);
-        else if (Input.GetKey(KeyCode.A) && !nextToWall(keyToDirection[KeyCode.A]))
-            movePacman(KeyCode.A);
-        else if (Input.GetKey(KeyCode.S) && !nextToWall(keyToDirection[KeyCode.S]))
-            movePacman(KeyCode.S);
-        else if (Input.GetKey(KeyCode.D) && !nextToWall(keyToDirection[KeyCode.D]))
-            movePacman(KeyCode.D);
-        else if (!nextToWall(keyToDirection[lastInput]) && CurrentState != PacState.Dead)
+        //Only run start everything if the start countdown is finished or if the game is not finished
+        if (HUDManager.StartCounter <= -1.0f && HUDManager.LivesCount != -1)
         {
-            currentInput = lastInput;
-            movePacman(lastInput);
-        }
-        else if (!nextToWall(keyToDirection[currentInput]) && CurrentState != PacState.Dead)
-            movePacman(currentInput);            
-        else
-        {
-            PacmanIsMoving = false;
 
-            //Play the collision particle animation the first time that pacman hits a wall
-            if (firstWallCollision && !tweener.tweenInProgress() && CurrentState != PacState.Dead)
+
+            //Lerp to move pacman from one position to the next if there isn't a wall
+            if (Input.GetKey(KeyCode.W) && !nextToWall(keyToDirection[KeyCode.W]))
+                movePacman(KeyCode.W);
+            else if (Input.GetKey(KeyCode.A) && !nextToWall(keyToDirection[KeyCode.A]))
+                movePacman(KeyCode.A);
+            else if (Input.GetKey(KeyCode.S) && !nextToWall(keyToDirection[KeyCode.S]))
+                movePacman(KeyCode.S);
+            else if (Input.GetKey(KeyCode.D) && !nextToWall(keyToDirection[KeyCode.D]))
+                movePacman(KeyCode.D);
+            else if (!nextToWall(keyToDirection[lastInput]) && CurrentState != PacState.Dead)
             {
-                firstWallCollision = false;
-                GameObject collisionParticle = Instantiate(wallParticle, (pacman.transform.position + keyToEndPosition[lastInput]), Quaternion.identity);
-                Destroy(collisionParticle, 1);
+                currentInput = lastInput;
+                movePacman(lastInput);
             }
-        }
-
-        //Raycast for pickups
-        raycastPickup();
-
-        //Teleport pacman if he reaches the teleport zones and prevent the player from moving off the map
-        if (pacman.transform.position == leftTeleport && !justTeleported)
-        {
-            tweener.RemoveTween();
-            justTeleported = true;
-            pacman.transform.position = rightTeleport;
-            movePacman(KeyCode.A);
-        }
-        else if (pacman.transform.position == rightTeleport && !justTeleported)
-        {
-            tweener.RemoveTween();
-            justTeleported = true;
-            pacman.transform.position = leftTeleport;
-            movePacman(KeyCode.D);
-        }
-
-        //Power Pill effects
-        if(pickupHit.collider != null)
-        {
-            if (pickupHit.collider.gameObject.tag == "PowerPill" && pickupHit.distance < 2.0f)
+            else if (!nextToWall(keyToDirection[currentInput]) && CurrentState != PacState.Dead)
+                movePacman(currentInput);
+            else
             {
-                //Start a timer for 10 seconds
-                PowerTime = 10.0f;
-                CurrentState = PacState.Powered;
+                PacmanIsMoving = false;
 
-                //Change ghost animator to scared
+                //Play the collision particle animation the first time that pacman hits a wall
+                if (firstWallCollision && !tweener.tweenInProgress() && CurrentState != PacState.Dead)
+                {
+                    firstWallCollision = false;
+                    GameObject collisionParticle = Instantiate(wallParticle, (pacman.transform.position + keyToEndPosition[lastInput]), Quaternion.identity);
+                    Destroy(collisionParticle, 1);
+                }
+            }
+
+            //Raycast for pickups
+            raycastPickup();
+
+            //Teleport pacman if he reaches the teleport zones and prevent the player from moving off the map
+            if (pacman.transform.position == leftTeleport && !justTeleported)
+            {
+                tweener.RemoveTween();
+                justTeleported = true;
+                pacman.transform.position = rightTeleport;
+                movePacman(KeyCode.A);
+            }
+            else if (pacman.transform.position == rightTeleport && !justTeleported)
+            {
+                tweener.RemoveTween();
+                justTeleported = true;
+                pacman.transform.position = leftTeleport;
+                movePacman(KeyCode.D);
+            }
+
+            //Power Pill effects
+            if (pickupHit.collider != null)
+            {
+                if (pickupHit.collider.gameObject.tag == "PowerPill" && pickupHit.distance < 2.0f)
+                {
+                    //Start a timer for 10 seconds
+                    PowerTime = 10.0f;
+                    CurrentState = PacState.Powered;
+
+                    //Change ghost animator to scared
+                    foreach (GameObject ghost in ghosts)
+                    {
+                        ghost.GetComponent<Animator>().SetBool("isScared", true);
+                        ghost.GetComponent<Animator>().SetBool("isRecovering", false);
+                    }
+
+                }
+            }
+
+            //Update timer if current state is powered
+            if (CurrentState == PacState.Powered)
+            {
+                PowerTime -= Time.deltaTime;
+
+                //Change ghosts to recovering state if timer has 3 seconds left
                 foreach (GameObject ghost in ghosts)
                 {
-                    ghost.GetComponent<Animator>().SetBool("isScared", true);
-                    ghost.GetComponent<Animator>().SetBool("isRecovering", false);
+                    if (PowerTime <= 3.0f && !ghost.GetComponent<Animator>().GetBool("isRecovering"))
+                    {
+                        ghost.GetComponent<Animator>().SetBool("isRecovering", true);
+                        ghost.GetComponent<Animator>().SetBool("isScared", false);
+                    }
+
+                    //Go back to normal state if time runs out
+                    else if (PowerTime <= 0.0f)
+                    {
+                        ghost.GetComponent<Animator>().SetBool("isRecovering", false);
+                        CurrentState = PacState.Normal;
+                    }
                 }
-                    
             }
-        }
 
-        //Update timer if current state is powered
-        if (CurrentState == PacState.Powered)
-        {
-            PowerTime -= Time.deltaTime;
+            //Raycast for ghosts
+            raycastGhost();
 
-            //Change ghosts to recovering state if timer has 3 seconds left
-            foreach (GameObject ghost in ghosts)
+            //Pacman collisions with ghosts
+            if (ghostHit.collider != null)
             {
-                if (PowerTime <= 3.0f && !ghost.GetComponent<Animator>().GetBool("isRecovering"))
+                if (ghostHit.distance <= 1.8f)
                 {
-                    ghost.GetComponent<Animator>().SetBool("isRecovering", true);
-                    ghost.GetComponent<Animator>().SetBool("isScared", false);
-                }
+                    //Set state to dead if pacman is touching ghost and ghost isnt in scared state
+                    if (!ghostHit.collider.gameObject.GetComponent<Animator>().GetBool("isScared") && !ghostHit.collider.gameObject.GetComponent<Animator>().GetBool("isRecovering") && !ghostHit.collider.gameObject.GetComponent<Animator>().GetBool("isDead"))
+                    {
+                        CurrentState = PacState.Dead;
+                        HUDManager.LivesCount = HUDManager.LivesCount - 1;
 
-                //Go back to normal state if time runs out
-                else if (PowerTime <= 0.0f)
-                {
-                    ghost.GetComponent<Animator>().SetBool("isRecovering", false);
-                    CurrentState = PacState.Normal;
+                        //Death particles
+                        GameObject currentDeathParticles = Instantiate(pacDeathParticles, pacman.transform.position, Quaternion.identity);
+                        Destroy(currentDeathParticles, 2);
+
+                        //Reset position
+                        tweener.RemoveTween();
+                        pacman.transform.position = new Vector3(4.0f, -4.0f, pacman.transform.position.z);
+                    }
+
+                    //If ghost is scared or recovering, set ghost to dead
+                    else if ((ghostHit.collider.gameObject.GetComponent<Animator>().GetBool("isScared") || ghostHit.collider.gameObject.GetComponent<Animator>().GetBool("isRecovering")) && !ghostHit.collider.gameObject.GetComponent<Animator>().GetBool("isDead"))
+                    {
+                        ghostHit.collider.gameObject.GetComponent<Animator>().SetBool("isScared", false);
+                        ghostHit.collider.gameObject.GetComponent<Animator>().SetBool("isRecovering", false);
+                        ghostHit.collider.gameObject.GetComponent<Animator>().SetBool("isDead", true);
+                        GhostIsDead = true;
+                        PlayDeathSound = true;
+                    }
                 }
             }
-        }
 
-        //Raycast for ghosts
-        raycastGhost();
-
-        //Pacman collisions with ghosts
-        if (ghostHit.collider != null)
-        {
-            //Set state to dead if pacman is touching ghost and ghost isnt in scared state
-            if (ghostHit.distance <= 1.8f && !ghostHit.collider.gameObject.GetComponent<Animator>().GetBool("isScared") && !ghostHit.collider.gameObject.GetComponent<Animator>().GetBool("isRecovering"))
+            //Update ghost death timers
+            for (int i = 0; i < ghosts.Length; i++)
             {
-                CurrentState = PacState.Dead;
-                HUDManager.LivesCount = HUDManager.LivesCount - 1;
+                //Reduce timer if ghosts state is dead
+                if (ghosts[i].GetComponent<Animator>().GetBool("isDead"))
+                    ghostDeathTimer[i] -= Time.deltaTime;
+                //Send ghost back to normal state if death timer is up
+                if (ghostDeathTimer[i] <= 0.0f)
+                {
+                    ghosts[i].GetComponent<Animator>().SetBool("isDead", false);
+                    ghostDeathTimer[i] = 5.0f;
 
-                //Reset position
-                tweener.RemoveTween();
-                pacman.transform.position = new Vector3(4.0f, -4.0f, pacman.transform.position.z);
+                    //PLACEHOLDER TO MAKE ANIMATIONS CYCLE
+                    ghosts[i].GetComponent<Animator>().SetBool("isUp", true);
+                }
             }
-                
         }
     }
 
@@ -220,7 +269,7 @@ public class PacStudentController : MonoBehaviour
             pacman.transform.rotation = keyToRotation[keyPressed];
             pacman.transform.localScale = keyToLocalScale[keyPressed];
         }
-        
+
     }
 
     private bool nextToWall(Vector2 direction)
@@ -247,7 +296,6 @@ public class PacStudentController : MonoBehaviour
     {
         //Raycast for ghosts
         RaycastHit2D hit = Physics2D.Raycast(pacman.transform.position, keyToDirection[lastInput], 4.0f, LayerMask.GetMask("Ghosts"));
-        Debug.Log(hit.distance);
         ghostHit = hit;
     }
 
