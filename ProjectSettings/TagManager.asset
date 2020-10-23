@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - ExitButton
+  - InputManager
+  - Pellet
+  - PowerPill
+  - BonusCherry
+  - SaveManager
   layers:
   - Default
   - TransparentFX
@@ -14,10 +19,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Walls
+  - Pickups
+  - Ghosts
+  - Pacman
   - 
   - 
   - 
