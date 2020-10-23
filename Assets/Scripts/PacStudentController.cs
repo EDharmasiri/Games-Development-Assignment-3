@@ -103,25 +103,28 @@ public class PacStudentController : MonoBehaviour
     private void Update()
     {
         //Only run start everything if the start countdown is finished or if the game is not finished
-        if (HUDManager.StartCounter <= -1.0f && HUDManager.LivesCount != -1)
+        if (HUDManager.StartCounter <= -1.0f && !HUDManager.GameOver)
         {
-
-
             //Lerp to move pacman from one position to the next if there isn't a wall
-            if (Input.GetKey(KeyCode.W) && !nextToWall(keyToDirection[KeyCode.W]))
-                movePacman(KeyCode.W);
-            else if (Input.GetKey(KeyCode.A) && !nextToWall(keyToDirection[KeyCode.A]))
-                movePacman(KeyCode.A);
-            else if (Input.GetKey(KeyCode.S) && !nextToWall(keyToDirection[KeyCode.S]))
-                movePacman(KeyCode.S);
-            else if (Input.GetKey(KeyCode.D) && !nextToWall(keyToDirection[KeyCode.D]))
-                movePacman(KeyCode.D);
-            else if (!nextToWall(keyToDirection[lastInput]) && CurrentState != PacState.Dead)
+            if (Input.GetKey(KeyCode.W))
+                lastInput = KeyCode.W;
+            else if (Input.GetKey(KeyCode.A))
+                lastInput = KeyCode.A;
+            else if (Input.GetKey(KeyCode.S))
+                lastInput = KeyCode.S;
+            else if (Input.GetKey(KeyCode.D))
+                lastInput = KeyCode.D;
+
+            if (lastInput != KeyCode.A && lastInput != KeyCode.W && CurrentState == PacState.Dead)
+                CurrentState = PacState.Normal;
+
+            if (!nextToWall(keyToDirection[lastInput]) && CurrentState != PacState.Dead)
             {
+                
                 currentInput = lastInput;
                 movePacman(lastInput);
             }
-            else if (!nextToWall(keyToDirection[currentInput]) && CurrentState != PacState.Dead)
+            else if (!nextToWall(keyToDirection[currentInput]))
                 movePacman(currentInput);
             else
             {
@@ -218,9 +221,14 @@ public class PacStudentController : MonoBehaviour
                         //Reset position
                         tweener.RemoveTween();
                         pacman.transform.position = new Vector3(4.0f, -4.0f, pacman.transform.position.z);
+                        //Reset lastinput, rotation and scale
+                        lastInput = KeyCode.A;
+                        currentInput = lastInput;
+                        pacman.transform.rotation = keyToRotation[KeyCode.D];
+                        pacman.transform.localScale = keyToLocalScale[KeyCode.D];
                     }
 
-                    //If ghost is scared or recovering, set ghost to dead
+                    /*//If ghost is scared or recovering, set ghost to dead
                     else if ((ghostHit.collider.gameObject.GetComponent<Animator>().GetBool("isScared") || ghostHit.collider.gameObject.GetComponent<Animator>().GetBool("isRecovering")) && !ghostHit.collider.gameObject.GetComponent<Animator>().GetBool("isDead"))
                     {
                         ghostHit.collider.gameObject.GetComponent<Animator>().SetBool("isScared", false);
@@ -228,24 +236,7 @@ public class PacStudentController : MonoBehaviour
                         ghostHit.collider.gameObject.GetComponent<Animator>().SetBool("isDead", true);
                         GhostIsDead = true;
                         PlayDeathSound = true;
-                    }
-                }
-            }
-
-            //Update ghost death timers
-            for (int i = 0; i < ghosts.Length; i++)
-            {
-                //Reduce timer if ghosts state is dead
-                if (ghosts[i].GetComponent<Animator>().GetBool("isDead"))
-                    ghostDeathTimer[i] -= Time.deltaTime;
-                //Send ghost back to normal state if death timer is up
-                if (ghostDeathTimer[i] <= 0.0f)
-                {
-                    ghosts[i].GetComponent<Animator>().SetBool("isDead", false);
-                    ghostDeathTimer[i] = 5.0f;
-
-                    //PLACEHOLDER TO MAKE ANIMATIONS CYCLE
-                    ghosts[i].GetComponent<Animator>().SetBool("isUp", true);
+                    }*/
                 }
             }
         }
@@ -255,7 +246,7 @@ public class PacStudentController : MonoBehaviour
     {
         PacmanIsMoving = true;
         firstWallCollision = true;
-        lastInput = keyPressed;
+
         if (pacman.transform.position.x >= leftTeleport.x + 2.0f && pacman.transform.position.x <= rightTeleport.x - 2.0f)
             justTeleported = false;
         if (CurrentState == PacState.Dead)

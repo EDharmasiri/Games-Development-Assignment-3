@@ -13,7 +13,6 @@ public class HUDManager : MonoBehaviour
     public GameObject startCountdown;
     public GameObject gameOverScreen;
     private GameObject currentCountdown;
-    private bool gameOver;
     GameObject currentGameOverScreen;
 
     public static int LivesCount { get; set; }
@@ -22,6 +21,8 @@ public class HUDManager : MonoBehaviour
     public static int Score { get; private set; }
     public static float GameTime { get; private set; }
 
+    public static bool GameOver { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class HUDManager : MonoBehaviour
         LivesCount = 2;
         StartCounter = 3.0f;
         GameTime = 0.0f;
-        gameOver = false;
+        GameOver = false;
         currentCountdown = Instantiate(startCountdown, gameObject.transform);
         currentCountdown.GetComponent<UnityEngine.UI.Text>().text = Mathf.CeilToInt(StartCounter).ToString();
     }
@@ -103,21 +104,21 @@ public class HUDManager : MonoBehaviour
         lives.GetComponent<RectTransform>().sizeDelta = new Vector2(lives.GetComponent<RectTransform>().sizeDelta.y * LivesCount, lives.GetComponent<RectTransform>().sizeDelta.y);
 
         //Run saving method if game is over
-        if (LivesCount == -1)
+        if (LivesCount == -1 || (GameObject.FindGameObjectsWithTag("Pellet").Length == 0 && GameObject.FindGameObjectsWithTag("PowerPill").Length == 0))
         {
             //Save if high score
             SaveManager.SaveScores();
             //Run the game over screen
-            if (!gameOver)
+            if (!GameOver)
             {
                 currentGameOverScreen = Instantiate(gameOverScreen, gameObject.transform);
                 Destroy(currentGameOverScreen, 3);
-                gameOver = true;
+                GameOver = true;
             }
 
             //Go back to start screen
-            if (currentGameOverScreen == null && gameOver)
-                UISceneManager.loadLevel(0);
+            if (currentGameOverScreen == null && GameOver)
+                GameObject.FindObjectOfType<UISceneManager>().loadLevel(0);
         }
     }
 }

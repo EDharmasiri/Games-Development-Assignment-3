@@ -21,17 +21,17 @@ public class UISceneManager : MonoBehaviour
         
     }
 
-    public static void loadLevel(int index) {        
+    public void loadLevel(int index) {        
         SceneManager.LoadScene(index, LoadSceneMode.Single);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public static void ExitGame()
+    public void ExitGame()
     {
         loadLevel(0);
     }
 
-    public static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //If the scene is level 1
         if (scene.buildIndex == 1)

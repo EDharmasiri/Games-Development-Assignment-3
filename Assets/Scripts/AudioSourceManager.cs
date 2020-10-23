@@ -42,8 +42,8 @@ public class AudioSourceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Only run sounds after the start countdown is finished
-        if (HUDManager.StartCounter <= -1.0f)
+        //Only run sounds after the start countdown is finished and when game isnt finished
+        if (HUDManager.StartCounter <= -1.0f && !HUDManager.GameOver)
         {
             //Sound Effects
             if (timeCounter >= 0.5)
